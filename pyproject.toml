@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "auth-service"
+version = "0.1.0"
+description = ""
+authors = ["Adrian Meraz <adrian@rydeas.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+coverage = "~7.6"
+python = "~3.12"
+python-dotenv = "~1.0"
+pyjwt = "~2.9"
+py-aws-core = "~0.2"
+pydantic = "^2.9.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

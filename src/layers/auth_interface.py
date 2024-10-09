@@ -9,7 +9,7 @@ class AuthInterface(ABC):
     @abstractmethod
     def create_admin_user(
         cls,
-        org_name: str,
+        group_name: str,
         username: str,
         email: str,
         set_roles: set[security.UserRoles],

@@ -11,14 +11,14 @@ class AuthService(AuthInterface):
     @classmethod
     def create_admin_user(
         cls,
-        org_name: str,
+        group_name: str,
         username: str,
         email: str,
         set_roles: set[security.UserRoles],
     ):
         return auth_cognito.CreateCognitoAdminUser.call(
             cog_client=cog_client,
-            org_name=org_name,
+            group_name=group_name,
             username=username,
             email=email,
             set_roles=set_roles

@@ -14,6 +14,11 @@ class UserRoles(str, Enum):
     SUPERUSER = 'SUPERUSER'
 
 
+COGNITO_USERNAME_KEY = 'cognito:username'
+ROLES_KEY = 'custom:roles'
+GROUP_KEY = 'custom:group'
+
+
 class AuthToken:
     def __init__(self, token):
         # No need to validate token since apigw authorizer already does so
@@ -21,12 +26,12 @@ class AuthToken:
 
     @property
     def username(self) -> str:
-        return self.decoded_token['cognito:username']
+        return self.decoded_token[COGNITO_USERNAME_KEY]
 
     @property
     def roles(self) -> typing.List[UserRoles]:
-        return [UserRoles(r) for r in self.decoded_token['custom:roles'].split(',')]
+        return [UserRoles(r) for r in self.decoded_token[ROLES_KEY].split(',')]
 
     @property
     def group(self) -> str:
-        return self.decoded_token['custom:group']
+        return self.decoded_token[GROUP_KEY]

@@ -9,10 +9,10 @@ class AuthInterface(ABC):
     @abstractmethod
     def create_admin_user(
         cls,
-        group_name: str,
-        username: str,
         email: str,
+        group_name: str,
         set_roles: set[security.UserRoles],
+        username: str,
     ):
         pass
 

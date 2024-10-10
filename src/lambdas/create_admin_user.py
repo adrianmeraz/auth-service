@@ -1,7 +1,7 @@
 from py_aws_core import utils as aws_utils
 
 from src.layers import logs
-from src.layers.events import AddUserEvent
+from src.layers.events import CreateAdminUserEvent
 from src.layers.routing import get_router
 from src.layers.services import ServiceConfig
 
@@ -12,7 +12,7 @@ auth_service = ServiceConfig.get_auth_service()
 
 @apigw_router.route(path='/admin-user', http_method='POST')
 def lambda_handler(event, context):
-    event = AddUserEvent(event)
+    event = CreateAdminUserEvent(event)
     process_event(event)
     return aws_utils.build_lambda_response(
         status_code=200,
@@ -20,18 +20,15 @@ def lambda_handler(event, context):
     )
 
 
-def process_event(event: AddUserEvent):
+def process_event(event: CreateAdminUserEvent):
     return add_member_user(event)
 
 
-def add_member_user(event: AddUserEvent):
-    user = event.user
-    return db_service.create_member_user(
-        auth_service=auth_service,
-        called_by=event.called_by,
-        org_name=user.org_name,
-        username=user.username,
-        first_name=user.first_name,
-        first_last_name=user.first_last_name,
-        email=user.email,
+def add_member_user(event: CreateAdminUserEvent):
+    fields = event.fields
+    return auth_service.create_admin_user(
+        email=fields.email,
+        group_name=fields.group_name,
+        set_roles=fields.set_roles,
+        username=fields.username,
     )

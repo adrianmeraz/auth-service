@@ -22,7 +22,3 @@ class CreateAdminUserEvent(ASEvent):
     def __init__(self, data):
         super().__init__(data)
         self.fields = self.CreateAdminUser(**self.body)
-        # self.group_name = self.body['group_name']
-        # self.username = self.body['username']
-        # self.email = self.body['email']
-        # self.first_name = self.body['set_roles']

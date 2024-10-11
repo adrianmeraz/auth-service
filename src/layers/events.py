@@ -22,3 +22,4 @@ class CreateAdminUserEvent(ASEvent):
     def __init__(self, data):
         super().__init__(data)
         self.fields = self.CreateAdminUser(**self.body)
+

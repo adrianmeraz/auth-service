@@ -38,3 +38,4 @@ Create new Token with following permissions:
 * write:discussion
 
 Copy token somewhere to use later in GH_PAT environment variable
+

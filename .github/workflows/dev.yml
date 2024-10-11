@@ -57,7 +57,7 @@ jobs:
 
     - name: Set ECR Repository Url
       run: |
-        echo "AWS_ECR_REPOSITORY_URL=https://${{ steps.aws-creds.outputs.aws-account-id }}.dkr.ecr.${{ steps.aws-creds.outputs.aws-region }}.amazonaws.com/${{ env.APP_NAME }}-${{ env.ENVIRONMENT }}-ecr" >> $GITHUB_ENV
+        echo "AWS_ECR_REPOSITORY_URL=${{ steps.aws-creds.outputs.aws-account-id }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.APP_NAME }}-${{ env.ENVIRONMENT }}-ecr" >> $GITHUB_ENV
 
     - name: Build image, cache layers, and push to ECR
       env:

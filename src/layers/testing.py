@@ -39,10 +39,9 @@ class ASTestFixture(BaseTestFixture):
         return Secrets(
             app_name='big-service',
             boto_client=boto_client,
-            base_domain_name='ipsumlorem.com',
-            cognito_pool_id=cls.TEST_COGNITO_POOL_ID,
-            cognito_pool_client_id=cls.TEST_COGNITO_POOL_CLIENT_ID,
-            dynamo_db_table_name='TEST_TABLE',
+            aws_cognito_pool_id=cls.TEST_COGNITO_POOL_ID,
+            aws_cognito_pool_client_id=cls.TEST_COGNITO_POOL_CLIENT_ID,
+            aws_dynamo_db_table_name='TEST_TABLE',
             environment='dev',
         )
 

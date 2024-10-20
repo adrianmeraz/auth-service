@@ -1,5 +1,3 @@
-import typing
-
 from py_aws_core.events import LambdaEvent
 from pydantic import BaseModel, EmailStr
 
@@ -22,6 +20,16 @@ class CreateAdminUserEvent(ASEvent):
     def __init__(self, data):
         super().__init__(data)
         self.fields = self.CreateAdminUser(**self.body)
+
+
+class LoginEvent(ASEvent):
+    class Login(BaseModel):
+        username: str
+        password: str
+
+    def __init__(self, data):
+        super().__init__(data)
+        self.fields = self.Login(**self.body)
 
 
 class RefreshTokenEvent(ASEvent):

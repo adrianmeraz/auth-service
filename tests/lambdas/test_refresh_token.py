@@ -15,7 +15,7 @@ class RefreshTokenApiTests(ASTestFixture):
         stubber_1.add_response(method='initiate_auth', service_response=initiate_auth_json)
         stubber_1.activate()
 
-        mock_event = self.get_event_resource_json('event.json')
+        mock_event = self.get_event_resource_json('event#refresh_token.json')
         secrets = self.get_mocked_secrets()
         auth_service = AuthService(boto_client=boto_client, secrets=secrets)
 

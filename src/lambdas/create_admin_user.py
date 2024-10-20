@@ -23,10 +23,10 @@ def lambda_handler(event, context, auth_service: IAuth = Provide[Container.auth_
 
 
 def process_event(event: CreateAdminUserEvent, auth_service: IAuth):
-    return add_member_user(event=event, auth_service=auth_service)
+    return create_admin_user(event=event, auth_service=auth_service)
 
 
-def add_member_user(event: CreateAdminUserEvent, auth_service: IAuth):
+def create_admin_user(event: CreateAdminUserEvent, auth_service: IAuth):
     fields = event.fields
     return auth_service.create_admin_user(
         email=fields.email,

@@ -16,4 +16,4 @@ class Container(containers.DeclarativeContainer):
 
     secrets = providers.Singleton(Secrets, boto_client=ssm_client)
 
-    auth_service = providers.Factory(AuthService, boto_client=cognito_client)
+    auth_service = providers.Factory(AuthService, boto_client=cognito_client, secrets=secrets)

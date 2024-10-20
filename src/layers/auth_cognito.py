@@ -20,7 +20,7 @@ class CreateCognitoAdminUser:
         email: str,
         set_roles: set[security.UserRoles],
     ):
-        return cognito_service.AdminCreateUser.call(
+        response = cognito_service.AdminCreateUser.call(
             boto_client=boto_client,
             cognito_pool_id=cognito_pool_id,
             username=username,
@@ -42,6 +42,8 @@ class CreateCognitoAdminUser:
                 'EMAIL',
             ],
         )
+        logger.info('Admin User Created', response=response)
+        return response
 
 
 @dataclass

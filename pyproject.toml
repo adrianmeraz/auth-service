@@ -11,7 +11,8 @@ python = "~3.12"
 python-dotenv = "~1.0"
 pyjwt = "~2.9"
 py-aws-core = "~0.2"
-pydantic = "^2.9.2"
+pydantic = {extras = ["email"], version = "^2.9.2"}
+dependency-injector = "^4.42.0"
 
 [build-system]
 requires = ["poetry-core"]

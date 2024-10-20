@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from py_aws_core import cognito, decorators as aws_decorators, exceptions as aws_exceptions
-from py_aws_core.cognito import CognitoClient
+from botocore.client import BaseClient
+from py_aws_core import cognito_service, decorators as aws_decorators, exceptions as aws_exceptions
 
 from . import exceptions, entities, logs, security
 
@@ -13,15 +13,15 @@ class CreateCognitoAdminUser:
     @aws_decorators.boto3_handler(client_error_map=dict(), raise_as=exceptions.AuthServiceException)
     def call(
         cls,
-        cog_client: CognitoClient,
+        boto_client: BaseClient,
         cognito_pool_id: str,
         group_name: str,
         username: str,
         email: str,
         set_roles: set[security.UserRoles],
     ):
-        return cognito.AdminCreateUser.call(
-            client=cog_client,
+        return cognito_service.AdminCreateUser.call(
+            boto_client=boto_client,
             cognito_pool_id=cognito_pool_id,
             username=username,
             user_attributes=[
@@ -46,7 +46,7 @@ class CreateCognitoAdminUser:
 
 @dataclass
 class CognitoResponse:
-    cog_response: cognito.RefreshTokenAuth.Response
+    cog_response: cognito_service.RefreshTokenAuth.Response
 
     @property
     def token_response(self):
@@ -66,19 +66,19 @@ class Login:
     @aws_decorators.boto3_handler(client_error_map=dict(), raise_as=exceptions.AuthServiceException)
     def call(
         cls,
-        cog_client: CognitoClient,
+        boto_client: BaseClient,
+        cognito_pool_client_id: str,
         username: str,
         password: str,
-        pool_client_id: str,
     ) -> Response:
-        response = cognito.UserPasswordAuth.call(
-            client=cog_client,
-            cognito_pool_client_id=pool_client_id,
+        response = cognito_service.UserPasswordAuth.call(
+            boto_client=boto_client,
+            cognito_pool_client_id=cognito_pool_client_id,
             username=username,
             password=password
         )
         logger.info(f'User "{username}" successfully logged in')
-        return cls.Response(cog_response=response.AuthenticationResult)
+        return cls.Response(cog_response=response)
 
 
 class RefreshToken:
@@ -89,14 +89,14 @@ class RefreshToken:
     @aws_decorators.dynamodb_handler(client_err_map=aws_exceptions.ERR_CODE_MAP, cancellation_err_maps=[])
     def call(
         cls,
-        cog_client: CognitoClient,
+        boto_client: BaseClient,
         cognito_pool_client_id: str,
         refresh_token: str,
     ) -> Response:
-        response = cognito.RefreshTokenAuth.call(
-            client=cog_client,
+        response = cognito_service.RefreshTokenAuth.call(
+            boto_client=boto_client,
             cognito_pool_client_id=cognito_pool_client_id,
             refresh_token=refresh_token
         )
         logger.info(f'Successfully refreshed token')
-        return cls.Response(cog_response=response.AuthenticationResult)
+        return cls.Response(cog_response=response)

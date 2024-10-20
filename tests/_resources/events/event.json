@@ -1,0 +1,102 @@
+{
+    "resource": "/",
+    "path": "/",
+    "httpMethod": "GET",
+    "headers": {
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+        "accept-encoding": "gzip, deflate, br",
+        "accept-language": "en-US,en;q=0.9",
+        "Authorization": "Bearer eyJraWQiOiJzNndrcytDXC84WGxNOVF2OHNYeVhGczNjV1VsOVFwVzZsdE9rMGt5R2dDVT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIzZTYyYzNjOC00OTcwLTRmYzctYTk5Ni04NjhkNGMxMzk3ZjYiLCJjdXN0b206cm9sZXMiOiJTVVBFUlVTRVIsTUVNQkVSLFNUQUZGIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yX0N4VlFXNU1wVSIsImN1c3RvbTpncm91cCI6Indob2FkZXJlanIiLCJjb2duaXRvOnVzZXJuYW1lIjoiaGVsbG9tb3RvIiwib3JpZ2luX2p0aSI6IjZmMjA5YzgyLWMyNTgtNGIzMC1hMGIxLTBjYWYwMDRkMDRkNiIsImF1ZCI6IjdtdWR1dGdiZGViY2g2YWVoMjF1ZXEyaDFtIiwiZXZlbnRfaWQiOiJhMGNhODUwOS0xMTM0LTRmZWEtYTg5YS1kN2ZjYjRmOTg3ZTciLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTcxMzY2NDMyMCwiZXhwIjoxNzEzNjY3OTIwLCJpYXQiOjE3MTM2NjQzMjAsImp0aSI6IjgzNGI3ZWYyLTBkN2EtNGM2My1hYjI1LWMxYjU1MTU5M2VhNiIsImVtYWlsIjoiYWRyaWFuQHJ5ZGVhcy5jb20ifQ.HrlCeTFFfY_lKtA8HFFrzWRdyCdWbNdaMRozDH65Uzyy9FaavZq2enU8lQSs_TOyEl9aj5mxdIOmN03bpsaiZeWFLD6Ph_oUHl6MQBlgMGPQjzamAO6homn2IH-Thn5jcFdUVWEHIA4GHrw2M_Rty5sCDBxVkdjqCqU4KchoxL2zwXCGdp4Fr-p22PkG8bAkrLQAtO_QE2HqrseJo0XkOm64GDNVvNbL4O4EJ3NUY3vkRck2L0g0GMYG_1x8GFgwr1MdFOg0BOXvL4Qu0ToEVK86mjL-Ua8MR9t9Z4VraKIU5RSncm3SWuWTW6K2uo1oeXAXNWWhrA01Q3BeTGVvJg",
+        "cookie": "s_fid=7AAB6XMPLAFD9BBF-0643XMPL09956DE2; regStatus=pre-register",
+        "Host": "70ixmpl4fl.execute-api.us-east-2.amazonaws.com",
+        "sec-fetch-dest": "document",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-site": "none",
+        "upgrade-insecure-requests": "1",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36",
+        "X-Amzn-Trace-Id": "Root=1-5e66d96f-7491f09xmpl79d18acf3d050",
+        "X-Forwarded-For": "52.255.255.12",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "multiValueHeaders": {
+        "accept": [
+            "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+        ],
+        "accept-encoding": [
+            "gzip, deflate, br"
+        ],
+        "accept-language": [
+            "en-US,en;q=0.9"
+        ],
+        "cookie": [
+            "s_fid=7AABXMPL1AFD9BBF-0643XMPL09956DE2; regStatus=pre-register;"
+        ],
+        "Host": [
+            "70ixmpl4fl.execute-api.ca-central-1.amazonaws.com"
+        ],
+        "sec-fetch-dest": [
+            "document"
+        ],
+        "sec-fetch-mode": [
+            "navigate"
+        ],
+        "sec-fetch-site": [
+            "none"
+        ],
+        "upgrade-insecure-requests": [
+            "1"
+        ],
+        "User-Agent": [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36"
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=1-5e66d96f-7491f09xmpl79d18acf3d050"
+        ],
+        "X-Forwarded-For": [
+            "52.255.255.12"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ]
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "2gxmpl",
+        "resourcePath": "/",
+        "httpMethod": "GET",
+        "extendedRequestId": "JJbxmplHYosFVYQ=",
+        "requestTime": "10/Mar/2020:00:03:59 +0000",
+        "path": "/Prod/",
+        "accountId": "123456789012",
+        "protocol": "HTTP/1.1",
+        "stage": "Prod",
+        "domainPrefix": "70ixmpl4fl",
+        "requestTimeEpoch": 1583798639428,
+        "requestId": "77375676-xmpl-4b79-853a-f982474efe18",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "sourceIp": "52.255.255.12",
+            "principalOrgId": null,
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36",
+            "user": null
+        },
+        "domainName": "70ixmpl4fl.execute-api.us-east-2.amazonaws.com",
+        "apiId": "70ixmpl4fl"
+    },
+    "body": "{\"refresh_token\": \"eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.ovW1Pr76njVNpjzck0tGIbbbxBCBd8P-Kmzi7So-QjV9kb4mhX13QswurGlOz2q1AeF5X84CCxQ7TibWrleQAiNqkhdImGItzOOjCru1R9N5EAvVOw50L68yu-hvo7M9i3Q-4zOB02I6uMzu20LWNja3Yrdpi4aDtpHAmw5EkpQg2NAB0MjPRNe3ANbwN27rlu2MUeeOUYUTxiAsHTarORmxckIEphnztM6JacQes0pGwSIyoETYh7l3v59wKsBxYfpE1VlpyLPdOdOlcwVfQisM823uA0DiM2-GCRFXsKw4llIxPXsZ_TJ7P4DXq65UFtKPYDiRFYSpbBq87yw7-Q.fxGzoPo6ggSkvOBF.2hDKiJcu70BfWsFAtGn6pmYbTjPfahEzriwmOBt918TNrRHqnkPSwcEqBGjaIwWc7XZkMlRE48b-WSINhEIWUrBv97kKAlMqQF-mUr0wo5HD3Qf2SGuR06ErMobuN-LZLlEgz7tUERofn3LhoVyZ6VnoAZCL3eBPvScyg_jWv2Uzk4_44TZSQ9leazBOfWQ4K6Pv6Dkm6eLJlT88M_7_IvuNTjp-V_986a6vCt0HMFJJ-Oejl4p0HUO1pF2ZSiSw6cbDXJxhv4mePWUYcBj828oBFGGM8nO22YUoDrJUPRCgSMA0mr1Msf15TS1qo2SzIwReQ160a1ZajVCqTERqGRwWdJVR0mo47wOh2dzlewmlUKXEehotANqawBgF8Ml8zr7vtP7gWWotj6hoKdmqs-gviKJFyFKN56QMQJMsPJtDiLjQ76ypLxBXPRKgHzMyrYjep8mUg95PwzVZlfqgmyvvHUyWb86dihvWNyFvU6ebrOl2jnBocI4m7fSNsKVNm5PZI9cSrdcHqg42xIzAgM1HgEMVpQ7aOka0fHBf2WzA1ucRZAer0HiHhbBAwfbyccHef8_z7RNsGgw5cBFrhRhHMBtNLbjU52bHN2TsBiye9GaeqWEfhDCzKToW6ZiTN4MHr5erkxBK3v-EZa7s_eyZqz1DUDELy8V_m1AmWJY9Bsc4OblCfvNKZcytWAfDR9J3y26J8e2cV2m7yyyMzfTStb3nX6WHHNKKJVsen2DvlQ6GUmLx1friLlYQnOkXvegqPxlbxgKODvBpuKKxS-tNyOsSaNlPKhOYD_v0igbgdxMH8cO9WX-HuOGiGUjRjetZLSXGzzLAO2tyGbYMrw1lN6nIGJA60oTdN1Gl-LmPlrglKuSW7qTah0DPVSqKfkWI7uw94NStC6N8tYe-n1dvwlchyAKUuN5IaQpiUtIkb5wwbqQ5MsuSie7jaS-sHmDsT5XberZFjeXuVe2MZea2IsIS0MERbA91esvaD8sOX9fB6Mmvuf9WBNU5ieKxIsMKR1nw7icvXULO428n6gQML4gwsgVA5Ivj65QZmM4EUnKTBi8VghXe5nREkyuZc1cXTdB92LDwP0JFfi5_PsDCt9eK7wPOBozxaz8qMlMUMZWZA5jCwYhZCPFYycXFFtcqhDKdXmjeMwWNx4bwq2oO5CynNyaeyqrmGh-EXjk6cqpgNWVcV4wqr1BswolAmFOrVyZpmjO2zrV4UYGbAgP5wDFli5UiFJafrFLeZIf2loBz2RgOELD-maRRMZ3VgbDeHS4N-xw.D7EE30AaFh5yZdKO9j_a4Q\"}",
+    "isBase64Encoded": false
+}

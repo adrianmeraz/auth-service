@@ -14,12 +14,20 @@ class ASEvent(LambdaEvent):
 
 class CreateAdminUserEvent(ASEvent):
     class CreateAdminUser(BaseModel):
-        email = EmailStr
+        email: EmailStr
         group_name: str
-        set_roles = typing.List[security.UserRoles]
+        set_roles: list[security.UserRoles]
         username: str
 
     def __init__(self, data):
         super().__init__(data)
         self.fields = self.CreateAdminUser(**self.body)
 
+
+class RefreshTokenEvent(ASEvent):
+    class Refresh(BaseModel):
+        refresh_token: str
+
+    def __init__(self, data):
+        super().__init__(data)
+        self.fields = self.Refresh(**self.body)

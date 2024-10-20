@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from botocore.client import BaseClient
-from py_aws_core import cognito_service, decorators as aws_decorators, exceptions as aws_exceptions
+from py_aws_core import cognito_api, decorators as aws_decorators, exceptions as aws_exceptions
 
 from . import exceptions, entities, logs, security
 
@@ -20,7 +20,7 @@ class CreateCognitoAdminUser:
         email: str,
         set_roles: set[security.UserRoles],
     ):
-        response = cognito_service.AdminCreateUser.call(
+        response = cognito_api.AdminCreateUser.call(
             boto_client=boto_client,
             cognito_pool_id=cognito_pool_id,
             username=username,
@@ -48,7 +48,7 @@ class CreateCognitoAdminUser:
 
 @dataclass
 class CognitoResponse:
-    cog_response: cognito_service.RefreshTokenAuth.Response
+    cog_response: cognito_api.RefreshTokenAuth.Response
 
     @property
     def token_response(self):
@@ -73,7 +73,7 @@ class Login:
         username: str,
         password: str,
     ) -> Response:
-        response = cognito_service.UserPasswordAuth.call(
+        response = cognito_api.UserPasswordAuth.call(
             boto_client=boto_client,
             cognito_pool_client_id=cognito_pool_client_id,
             username=username,
@@ -95,7 +95,7 @@ class RefreshToken:
         cognito_pool_client_id: str,
         refresh_token: str,
     ) -> Response:
-        response = cognito_service.RefreshTokenAuth.call(
+        response = cognito_api.RefreshTokenAuth.call(
             boto_client=boto_client,
             cognito_pool_client_id=cognito_pool_client_id,
             refresh_token=refresh_token

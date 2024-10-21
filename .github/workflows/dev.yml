@@ -98,7 +98,7 @@ jobs:
       working-directory: ${{ env.TF_WORKDIR }}
       run: |
         export TF_PLUGIN_CACHE_DIR="${HOME}/.terraform.d/plugin-cache"
-        terraform init -lockfile=readonly
+        terraform init
 
 #    - name: Terraform Init
 #      working-directory: ${{ env.TF_WORKDIR }}

@@ -4,11 +4,10 @@ from . import security
 from .entities import CognitoTokenResponse
 
 
-class AuthInterface(ABC):
-    @classmethod
+class IAuth(ABC):
     @abstractmethod
     def create_admin_user(
-        cls,
+        self,
         email: str,
         group_name: str,
         set_roles: set[security.UserRoles],
@@ -16,19 +15,17 @@ class AuthInterface(ABC):
     ):
         pass
 
-    @classmethod
     @abstractmethod
     def login(
-        cls,
+        self,
         username: str,
         password: str,
     ) -> CognitoTokenResponse:
         pass
 
-    @classmethod
     @abstractmethod
     def refresh_token(
-        cls,
+        self,
         refresh_token: str
     ) -> CognitoTokenResponse:
         pass

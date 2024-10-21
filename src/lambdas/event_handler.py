@@ -1,9 +1,9 @@
 from py_aws_core import decorators
 
 from src.layers import exceptions
-from src.layers.routing import get_router
+from src.layers.containers import Container
 
-apigw_router = get_router()
+apigw_router = Container.api_gw_router
 
 
 @decorators.lambda_response_handler(raise_as=exceptions.ASCoreException)

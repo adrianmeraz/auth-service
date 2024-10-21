@@ -6,10 +6,10 @@ authors = ["Adrian Meraz <adrian@rydeas.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-coverage = "~7.6"
+coverage = "^7.6.4"
 python = "~3.12"
-python-dotenv = "~1.0"
-pyjwt = "~2.9"
+python-dotenv = "^1.0.1"
+pyjwt = "^2.9.0"
 py-aws-core = "~0.2"
 pydantic = {extras = ["email"], version = "^2.9.2"}
 dependency-injector = "^4.42.0"

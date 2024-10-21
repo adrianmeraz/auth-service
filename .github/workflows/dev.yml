@@ -81,30 +81,11 @@ jobs:
       with:
         terraform_version: 1.8.1
 
-    # testing TF caching
-    - name: Configure Terraform plugin cache
-      run: |
-        mkdir -p ~/.terraform.d/plugin-cache
-
-    - name: Cache Terraform plugins
-      uses: actions/cache@v4
-      with:
-        path: ~/.terraform.d/plugin-cache
-        key: ${{ runner.os }}-terraform-${{ hashFiles('.terraform.lock.hcl') }}
-        restore-keys: ${{ runner.os }}-terraform-
-
     - name: Terraform Init
-      id: init
       working-directory: ${{ env.TF_WORKDIR }}
+      id: tf-init
       run: |
-        export TF_PLUGIN_CACHE_DIR="${HOME}/.terraform.d/plugin-cache"
         terraform init
-
-#    - name: Terraform Init
-#      working-directory: ${{ env.TF_WORKDIR }}
-#      id: tf-init
-#      run: |
-#        terraform init
 
     - name: Terraform Apply
       working-directory: ${{ env.TF_WORKDIR }}

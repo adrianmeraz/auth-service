@@ -1,3 +1,4 @@
+# For further details on why AWS base images are used, see: https://aws.amazon.com/blogs/compute/optimizing-lambda-functions-packaged-as-container-images/
 FROM public.ecr.aws/lambda/python:3.12
 
 ENV POETRY_VERSION=1.8.3

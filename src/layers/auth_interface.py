@@ -35,6 +35,6 @@ class IAuth(ABC):
         self,
         username: str,
         new_password: str,
-        session: str
+        session: str = None
     ) -> CognitoTokenResponse:
         pass

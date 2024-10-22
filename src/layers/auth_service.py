@@ -51,32 +51,36 @@ class AuthService(IAuth):
         username: str,
         password: str
     ) -> CognitoTokenResponse:
-        auth_result = cognito_api.UserPasswordAuth.call(
+        response = cognito_api.UserPasswordAuth.call(
             boto_client=self._boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
             username=username,
             password=password
-        ).AuthenticationResult
+        )
+        r_auth = response.AuthenticationResult
         return CognitoTokenResponse(
-            access_token=auth_result.AccessToken,
-            refresh_token=auth_result.RefreshToken,
-            id_token=auth_result.IdToken
+            access_token=r_auth.AccessToken,
+            refresh_token=r_auth.RefreshToken,
+            id_token=r_auth.IdToken,
+            session=response.Session
         )
 
     def refresh_token(self, refresh_token: str) -> CognitoTokenResponse:
-        auth_result = cognito_api.RefreshTokenAuth.call(
+        response = cognito_api.RefreshTokenAuth.call(
             boto_client=self._boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
             refresh_token=refresh_token,
-        ).AuthenticationResult
+        )
+        r_auth = response.AuthenticationResult
         return CognitoTokenResponse(
-            access_token=auth_result.AccessToken,
-            refresh_token=auth_result.RefreshToken,
-            id_token=auth_result.IdToken
+            access_token=r_auth.AccessToken,
+            refresh_token=r_auth.RefreshToken,
+            id_token=r_auth.IdToken,
+            session=response.Session
         )
 
     def set_user_password(self, username: str, new_password: str, session: str = None) -> CognitoTokenResponse:
-        auth_result = cognito_api.RespondToAuthChallenge.call(
+        response = cognito_api.RespondToAuthChallenge.call(
             boto_client=self._boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
             challenge_name=cognito_api.AuthChallenge.NEW_PASSWORD_REQUIRED,
@@ -85,9 +89,11 @@ class AuthService(IAuth):
                 new_password=new_password
             ),
             session=session
-        ).AuthenticationResult
+        )
+        r_auth = response.AuthenticationResult
         return CognitoTokenResponse(
-            access_token=auth_result.AccessToken,
-            refresh_token=auth_result.RefreshToken,
-            id_token=auth_result.IdToken
+            access_token=r_auth.AccessToken,
+            refresh_token=r_auth.RefreshToken,
+            id_token=r_auth.IdToken,
+            session=response.Session
         )

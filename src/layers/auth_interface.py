@@ -29,3 +29,11 @@ class IAuth(ABC):
         refresh_token: str
     ) -> CognitoTokenResponse:
         pass
+
+    @abstractmethod
+    def set_user_password(
+        self,
+        username: str,
+        new_password: str
+    ) -> CognitoTokenResponse:
+        pass

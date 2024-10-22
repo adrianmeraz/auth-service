@@ -39,3 +39,13 @@ class RefreshTokenEvent(ASEvent):
     def __init__(self, data):
         super().__init__(data)
         self.fields = self.Refresh(**self.body)
+
+
+class SetUserPasswordEvent(ASEvent):
+    class SetUserPassword(BaseModel):
+        username: str
+        new_password: str
+
+    def __init__(self, data):
+        super().__init__(data)
+        self.fields = self.SetUserPassword(**self.body)

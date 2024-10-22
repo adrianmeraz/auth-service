@@ -6,7 +6,6 @@ authors = ["Adrian Meraz <adrian@rydeas.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-coverage = "^7.6.4"
 python = "~3.12"
 pyjwt = "^2.9.0"
 py-aws-core = "~0.2"

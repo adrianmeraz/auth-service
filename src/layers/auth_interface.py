@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 from . import security
-from .entities import CognitoTokenResponse
+from .api_responses import CognitoTokenResponse
 
 
 class IAuth(ABC):

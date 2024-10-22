@@ -15,10 +15,10 @@ apigw_router = Container.api_gw_router
 @inject
 def lambda_handler(event, context, auth_service: IAuth = Provide[Container.auth_service]):
     event = LoginEvent(event)
-    process_event(event=event, auth_service=auth_service)
+    response = process_event(event=event, auth_service=auth_service)
     return aws_utils.build_lambda_response(
         status_code=200,
-        body={}
+        body=response.as_dict()
     )
 
 

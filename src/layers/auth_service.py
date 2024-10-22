@@ -1,9 +1,8 @@
 from botocore.client import BaseClient
 from py_aws_core import cognito_api
 
-from . import logs, security
+from . import api_responses, logs, security
 from .auth_interface import IAuth
-from .entities import CognitoTokenResponse
 from .secrets import Secrets
 
 logger = logs.get_logger()
@@ -50,7 +49,7 @@ class AuthService(IAuth):
         self,
         username: str,
         password: str
-    ) -> CognitoTokenResponse:
+    ) -> api_responses.CognitoTokenResponse:
         response = cognito_api.UserPasswordAuth.call(
             boto_client=self._boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
@@ -58,28 +57,30 @@ class AuthService(IAuth):
             password=password
         )
         r_auth = response.AuthenticationResult
-        return CognitoTokenResponse(
+        return api_responses.LoginResponse(
             access_token=r_auth.AccessToken,
             refresh_token=r_auth.RefreshToken,
             id_token=r_auth.IdToken,
-            session=response.Session
+            session=response.Session,
+            challenge_name=response.ChallengeName,
+            challenge_parameters=response.ChallengeParameters
         )
 
-    def refresh_token(self, refresh_token: str) -> CognitoTokenResponse:
+    def refresh_token(self, refresh_token: str) -> api_responses.CognitoTokenResponse:
         response = cognito_api.RefreshTokenAuth.call(
             boto_client=self._boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
             refresh_token=refresh_token,
         )
         r_auth = response.AuthenticationResult
-        return CognitoTokenResponse(
+        return api_responses.CognitoTokenResponse(
             access_token=r_auth.AccessToken,
             refresh_token=r_auth.RefreshToken,
             id_token=r_auth.IdToken,
             session=response.Session
         )
 
-    def set_user_password(self, username: str, new_password: str, session: str = None) -> CognitoTokenResponse:
+    def set_user_password(self, username: str, new_password: str, session: str = None) -> api_responses.CognitoTokenResponse:
         response = cognito_api.RespondToAuthChallenge.call(
             boto_client=self._boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
@@ -91,7 +92,7 @@ class AuthService(IAuth):
             session=session
         )
         r_auth = response.AuthenticationResult
-        return CognitoTokenResponse(
+        return api_responses.CognitoTokenResponse(
             access_token=r_auth.AccessToken,
             refresh_token=r_auth.RefreshToken,
             id_token=r_auth.IdToken,

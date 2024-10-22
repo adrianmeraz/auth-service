@@ -80,14 +80,15 @@ class AuthService(IAuth):
             session=response.Session
         )
 
-    def set_user_password(self, username: str, new_password: str, session: str = None) -> api_responses.CognitoTokenResponse:
+    def set_user_password(self, username: str, new_password: str, user_attributes: str, session: str = None) -> api_responses.CognitoTokenResponse:
         response = cognito_api.RespondToAuthChallenge.call(
             boto_client=self._boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
             challenge_name=cognito_api.AuthChallenge.NEW_PASSWORD_REQUIRED,
             challenge_responses=cognito_api.NewPasswordChallengeResponse(
                 username=username,
-                new_password=new_password
+                new_password=new_password,
+                _user_attributes=user_attributes
             ),
             session=session
         )

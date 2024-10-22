@@ -12,7 +12,7 @@ class SetNewUserPasswordTests(ASTestFixture):
 
         stubber_1 = Stubber(boto_client)
         initiate_auth_json = self.get_cognito_resource_json('cognito#initiate_auth.json')
-        stubber_1.add_response(method='initiate_auth', service_response=initiate_auth_json)
+        stubber_1.add_response(method='respond_to_auth_challenge', service_response=initiate_auth_json)
         stubber_1.activate()
 
         mock_event = self.get_event_resource_json('event#set_user_password.json')

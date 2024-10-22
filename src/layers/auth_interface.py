@@ -34,6 +34,7 @@ class IAuth(ABC):
     def set_user_password(
         self,
         username: str,
-        new_password: str
+        new_password: str,
+        session: str
     ) -> CognitoTokenResponse:
         pass

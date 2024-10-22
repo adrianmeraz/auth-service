@@ -75,7 +75,7 @@ class AuthService(IAuth):
             id_token=auth_result.IdToken
         )
 
-    def set_user_password(self, username: str, new_password: str) -> CognitoTokenResponse:
+    def set_user_password(self, username: str, new_password: str, session: str) -> CognitoTokenResponse:
         auth_result = cognito_api.RespondToAuthChallenge.call(
             boto_client=self._boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
@@ -83,7 +83,8 @@ class AuthService(IAuth):
             challenge_responses=cognito_api.NewPasswordChallengeResponse(
                 username=username,
                 new_password=new_password
-            )
+            ),
+            session=session
         ).AuthenticationResult
         return CognitoTokenResponse(
             access_token=auth_result.AccessToken,

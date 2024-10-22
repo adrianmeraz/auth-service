@@ -30,5 +30,5 @@ def set_user_password(event: SetUserPasswordEvent, auth_service: IAuth):
     fields = event.fields
     return auth_service.set_user_password(
         username=fields.username,
-        new_password=fields.password,
+        new_password=fields.new_password,
     )

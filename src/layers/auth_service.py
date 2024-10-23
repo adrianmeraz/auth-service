@@ -96,7 +96,7 @@ class AuthService(IAuth):
                 USERNAME=username,
                 NEW_PASSWORD=new_password,
                 user_attributes={
-                    'custom:roles': str,
+                    'custom:roles': roles,
                     'custom:group': group,
                 }
             ),

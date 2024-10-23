@@ -28,15 +28,15 @@ class AuthService(IAuth):
             username=username,
             user_attributes=[
                 {
-                    'Name': 'email',
+                    'Name': security.EMAIL_KEY,
                     'Value': email
                 },
                 {
-                    'Name': 'custom:group',
+                    'Name': security.GROUP_KEY,
                     'Value': group_name
                 },
                 {
-                    'Name': 'custom:roles',
+                    'Name': security.ROLES_KEY,
                     'Value': ','.join(sorted([r.value for r in set_roles]))
                 },
             ],
@@ -96,8 +96,8 @@ class AuthService(IAuth):
                 USERNAME=username,
                 NEW_PASSWORD=new_password,
                 user_attributes={
-                    'custom:roles': roles,
-                    'custom:group': group,
+                    security.ROLES_KEY: roles,
+                    security.GROUP_KEY: group,
                 }
             ),
             session=session

@@ -46,7 +46,8 @@ class SetUserPasswordEvent(ASEvent):
         username: str
         new_password: str
         session: str
-        user_attributes: str
+        group: str
+        roles: str
 
     def __init__(self, data):
         super().__init__(data)

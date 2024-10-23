@@ -84,8 +84,9 @@ class AuthService(IAuth):
         self,
         username: str,
         new_password: str,
-        user_attributes: str,
-        session: str = None
+        group: str,
+        roles: str,
+        session: str = None,
     ) -> api_responses.CognitoTokenResponse:
         response = cognito_api.RespondToAuthChallenge.call(
             boto_client=self._boto_client,
@@ -94,7 +95,10 @@ class AuthService(IAuth):
             challenge_responses=cognito_api.NewPasswordChallengeResponse(
                 USERNAME=username,
                 NEW_PASSWORD=new_password,
-                _user_attributes=user_attributes
+                user_attributes={
+                    'custom:roles': str,
+                    'custom:group': group,
+                }
             ),
             session=session
         )

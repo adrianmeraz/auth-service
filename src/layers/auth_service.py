@@ -20,7 +20,7 @@ class AuthService(IAuth):
         group_name: str,
         username: str,
         email: str,
-        set_roles: set[security.UserRoles],
+        roles: set[security.UserRoles],
     ):
         return cognito_api.AdminCreateUser.call(
             boto_client=self._boto_client,
@@ -37,7 +37,7 @@ class AuthService(IAuth):
                 },
                 {
                     'Name': security.ROLES_KEY,
-                    'Value': ','.join(sorted([r.value for r in set_roles]))
+                    'Value': ','.join(sorted([r.value for r in roles]))
                 },
             ],
             desired_delivery_mediums=[

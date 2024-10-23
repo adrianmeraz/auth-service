@@ -31,6 +31,6 @@ def create_admin_user(event: CreateAdminUserEvent, auth_service: IAuth):
     return auth_service.create_admin_user(
         email=fields.email,
         group_name=fields.group_name,
-        set_roles=fields.set_roles,
+        roles=fields.roles,
         username=fields.username,
     )

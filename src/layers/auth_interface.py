@@ -10,7 +10,7 @@ class IAuth(ABC):
         self,
         email: str,
         group_name: str,
-        set_roles: set[security.UserRoles],
+        roles: set[security.UserRoles],
         username: str,
     ):
         pass

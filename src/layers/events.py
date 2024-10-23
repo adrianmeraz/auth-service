@@ -14,7 +14,7 @@ class CreateAdminUserEvent(ASEvent):
     class CreateAdminUser(BaseModel):
         email: EmailStr
         group_name: str
-        set_roles: list[security.UserRoles]
+        roles: list[security.UserRoles]
         username: str
 
     def __init__(self, data):

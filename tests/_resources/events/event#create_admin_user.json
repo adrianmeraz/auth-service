@@ -84,6 +84,6 @@
     "deploymentId": "zmrywj",
     "apiId": "zf63gqc65e"
   },
-  "body": "{\r\n    \"email\": \"adrian@rydeas.com\",\r\n    \"group_name\": \"testgroup1\",\r\n    \"set_roles\": [\"MEMBER\"],\r\n    \"username\": \"ducky69\"\r\n}",
+  "body": "{\r\n    \"email\": \"adrian@rydeas.com\",\r\n    \"group_name\": \"testgroup1\",\r\n    \"roles\": [\"MEMBER\"],\r\n    \"username\": \"ducky69\"\r\n}",
   "isBase64Encoded": false
 }

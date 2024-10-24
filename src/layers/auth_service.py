@@ -1,40 +1,111 @@
-from py_aws_core import cognito
+from botocore.client import BaseClient
+from py_aws_core import cognito_api
 
-from . import auth_cognito, security
-from .auth_interface import AuthInterface
-from .entities import CognitoTokenResponse
+from . import api_responses, logs, security
+from .auth_interface import IAuth
+from .secrets import Secrets
 
-cog_client = cognito.CognitoClient()
+logger = logs.get_logger()
 
 
-class AuthService(AuthInterface):
-    @classmethod
+class AuthService(IAuth):
+    def __init__(self, boto_client: BaseClient, secrets: Secrets):
+        self._boto_client = boto_client
+        self._secrets = secrets
+        self._cognito_pool_id = secrets.cognito_pool_id
+        self._cognito_pool_client_id = secrets.cognito_pool_client_id
+
     def create_admin_user(
-        cls,
+        self,
         group_name: str,
         username: str,
         email: str,
-        set_roles: set[security.UserRoles],
+        roles: set[security.UserRoles],
     ):
-        return auth_cognito.CreateCognitoAdminUser.call(
-            cog_client=cog_client,
-            group_name=group_name,
+        return cognito_api.AdminCreateUser.call(
+            cognito_client=self._boto_client,
+            cognito_pool_id=self._cognito_pool_id,
             username=username,
-            email=email,
-            set_roles=set_roles
+            user_attributes=[
+                {
+                    'Name': security.EMAIL_KEY,
+                    'Value': email
+                },
+                {
+                    'Name': security.GROUP_KEY,
+                    'Value': group_name
+                },
+                {
+                    'Name': security.ROLES_KEY,
+                    'Value': ','.join(sorted([r.value for r in roles]))
+                },
+            ],
+            desired_delivery_mediums=[
+                'EMAIL',
+            ],
         )
 
-    @classmethod
-    def login(cls, username: str, password: str) -> CognitoTokenResponse:
-        return auth_cognito.Login.call(
-            cog_client=cog_client,
+    def login(
+        self,
+        username: str,
+        password: str
+    ) -> api_responses.CognitoTokenResponse:
+        response = cognito_api.UserPasswordAuth.call(
+            cognito_client=self._boto_client,
+            cognito_pool_client_id=self._cognito_pool_client_id,
             username=username,
             password=password
-        ).token_response
+        )
+        r_auth = response.AuthenticationResult
+        return api_responses.LoginResponse(
+            access_token=r_auth.AccessToken,
+            refresh_token=r_auth.RefreshToken,
+            id_token=r_auth.IdToken,
+            session=response.Session,
+            challenge_name=response.ChallengeName,
+            challenge_parameters=response.ChallengeParameters
+        )
 
-    @classmethod
-    def refresh_token(cls, refresh_token: str) -> CognitoTokenResponse:
-        return auth_cognito.RefreshToken.call(
-            cog_client=cog_client,
+    def refresh_token(self, refresh_token: str) -> api_responses.CognitoTokenResponse:
+        response = cognito_api.RefreshTokenAuth.call(
+            cognito_client=self._boto_client,
+            cognito_pool_client_id=self._cognito_pool_client_id,
             refresh_token=refresh_token,
-        ).token_response
+        )
+        r_auth = response.AuthenticationResult
+        return api_responses.CognitoTokenResponse(
+            access_token=r_auth.AccessToken,
+            refresh_token=r_auth.RefreshToken,
+            id_token=r_auth.IdToken,
+            session=response.Session
+        )
+
+    def set_user_password(
+        self,
+        username: str,
+        new_password: str,
+        group: str,
+        roles: str,
+        session: str = None,
+    ) -> api_responses.CognitoTokenResponse:
+        response = cognito_api.RespondToAuthChallenge.call(
+            cognito_client=self._boto_client,
+            cognito_pool_client_id=self._cognito_pool_client_id,
+            challenge_name=cognito_api.AuthChallenge.NEW_PASSWORD_REQUIRED,
+            challenge_responses=cognito_api.NewPasswordChallengeResponse(
+                USERNAME=username,
+                NEW_PASSWORD=new_password,
+                user_attributes={
+                    security.ROLES_KEY: roles,
+                    security.GROUP_KEY: group,
+                }
+            ),
+            session=session
+        )
+        r_auth = response.AuthenticationResult
+        return api_responses.CognitoTokenResponse(
+            access_token=r_auth.AccessToken,
+            refresh_token=r_auth.RefreshToken,
+            id_token=r_auth.IdToken,
+            session=response.Session
+        )

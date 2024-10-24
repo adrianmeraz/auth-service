@@ -15,6 +15,7 @@ class UserRoles(str, Enum):
 
 
 COGNITO_USERNAME_KEY = 'cognito:username'
+EMAIL_KEY = 'email'
 ROLES_KEY = 'custom:roles'
 GROUP_KEY = 'custom:group'
 

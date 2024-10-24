@@ -1,0 +1,89 @@
+{
+  "resource": "/{proxy+}",
+  "path": "/login",
+  "httpMethod": "POST",
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Content-Type": "application/json",
+    "Host": "auth-service-dev.mechnetworks.com",
+    "Postman-Token": "6cb5e88f-53aa-486c-b493-3409708adec7",
+    "User-Agent": "PostmanRuntime/7.42.0",
+    "X-Amzn-Trace-Id": "Root=1-67147c11-677cf79d56c7acf60468f77d",
+    "X-Forwarded-For": "107.213.20.204",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https"
+  },
+  "multiValueHeaders": {
+    "Accept": [
+      "*/*"
+    ],
+    "Accept-Encoding": [
+      "gzip, deflate, br"
+    ],
+    "Content-Type": [
+      "application/json"
+    ],
+    "Host": [
+      "auth-service-dev.mechnetworks.com"
+    ],
+    "Postman-Token": [
+      "6cb5e88f-53aa-486c-b493-3409708adec7"
+    ],
+    "User-Agent": [
+      "PostmanRuntime/7.42.0"
+    ],
+    "X-Amzn-Trace-Id": [
+      "Root=1-67147c11-677cf79d56c7acf60468f77d"
+    ],
+    "X-Forwarded-For": [
+      "107.213.20.204"
+    ],
+    "X-Forwarded-Port": [
+      "443"
+    ],
+    "X-Forwarded-Proto": [
+      "https"
+    ]
+  },
+  "queryStringParameters": null,
+  "multiValueQueryStringParameters": null,
+  "pathParameters": {
+    "proxy": "login"
+  },
+  "stageVariables": null,
+  "requestContext": {
+    "resourceId": "stwwxf",
+    "resourcePath": "/{proxy+}",
+    "operationName": "{proxy+}-ANY",
+    "httpMethod": "POST",
+    "extendedRequestId": "f7hS2HeJPHcEiAQ=",
+    "requestTime": "20/Oct/2024:03:42:09 +0000",
+    "path": "/login",
+    "accountId": "687272729792",
+    "protocol": "HTTP/1.1",
+    "stage": "dev",
+    "domainPrefix": "auth-service-dev",
+    "requestTimeEpoch": 1729395729940,
+    "requestId": "de6780f2-43de-4d49-b6bd-06ffe24dc889",
+    "identity": {
+      "cognitoIdentityPoolId": null,
+      "accountId": null,
+      "cognitoIdentityId": null,
+      "caller": null,
+      "sourceIp": "107.213.20.204",
+      "principalOrgId": null,
+      "accessKey": null,
+      "cognitoAuthenticationType": null,
+      "cognitoAuthenticationProvider": null,
+      "userArn": null,
+      "userAgent": "PostmanRuntime/7.42.0",
+      "user": null
+    },
+    "domainName": "auth-service-dev.mechnetworks.com",
+    "deploymentId": "zmrywj",
+    "apiId": "zf63gqc65e"
+  },
+  "body": "{\r\n    \"username\": \"ducky69\",\r\n    \"password\": \"2:0paEFK\"\r\n}",
+  "isBase64Encoded": false
+}

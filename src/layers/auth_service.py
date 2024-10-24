@@ -23,7 +23,7 @@ class AuthService(IAuth):
         roles: set[security.UserRoles],
     ):
         return cognito_api.AdminCreateUser.call(
-            boto_client=self._boto_client,
+            cognito_client=self._boto_client,
             cognito_pool_id=self._cognito_pool_id,
             username=username,
             user_attributes=[
@@ -51,7 +51,7 @@ class AuthService(IAuth):
         password: str
     ) -> api_responses.CognitoTokenResponse:
         response = cognito_api.UserPasswordAuth.call(
-            boto_client=self._boto_client,
+            cognito_client=self._boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
             username=username,
             password=password
@@ -68,7 +68,7 @@ class AuthService(IAuth):
 
     def refresh_token(self, refresh_token: str) -> api_responses.CognitoTokenResponse:
         response = cognito_api.RefreshTokenAuth.call(
-            boto_client=self._boto_client,
+            cognito_client=self._boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
             refresh_token=refresh_token,
         )
@@ -89,7 +89,7 @@ class AuthService(IAuth):
         session: str = None,
     ) -> api_responses.CognitoTokenResponse:
         response = cognito_api.RespondToAuthChallenge.call(
-            boto_client=self._boto_client,
+            cognito_client=self._boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
             challenge_name=cognito_api.AuthChallenge.NEW_PASSWORD_REQUIRED,
             challenge_responses=cognito_api.NewPasswordChallengeResponse(

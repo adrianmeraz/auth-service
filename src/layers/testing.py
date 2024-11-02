@@ -1,6 +1,6 @@
 from importlib.resources import files
 
-from py_aws_core.boto_clients import SSMClientFactory
+from py_aws_core.boto_clients import SSMClient
 from py_aws_core.testing import BaseTestFixture
 
 from src.layers.secrets import Secrets
@@ -35,10 +35,10 @@ class ASTestFixture(BaseTestFixture):
 
     @classmethod
     def get_mocked_secrets(cls):
-        boto_client = SSMClientFactory.new_client()
+        ssm_client = SSMClient()
         return Secrets(
             app_name='big-service',
-            boto_client=boto_client,
+            ssm_client=ssm_client,
             aws_cognito_pool_id=cls.TEST_COGNITO_POOL_ID,
             aws_cognito_pool_client_id=cls.TEST_COGNITO_POOL_CLIENT_ID,
             aws_dynamo_db_table_name='TEST_TABLE',

@@ -1,4 +1,4 @@
-from botocore.client import BaseClient
+from py_aws_core.boto_clients import SSMClient
 from py_aws_core.ssm_parameter_store import SSMParameterStore
 
 
@@ -11,7 +11,7 @@ class Secrets(SSMParameterStore):
 
     def __init__(
         self,
-        boto_client: BaseClient,
+        ssm_client: SSMClient,
         app_name: str = None,
         aws_cognito_pool_id: str = None,
         aws_cognito_pool_client_id: str = None,
@@ -19,7 +19,7 @@ class Secrets(SSMParameterStore):
         environment: str = None,
     ):
         super().__init__(
-            boto_client=boto_client,
+            boto_client=ssm_client.boto_client,
             cached_secrets={
                 self.APP_NAME_KEY: app_name,
                 self.AWS_COGNITO_POOL_ID_KEY: aws_cognito_pool_id,

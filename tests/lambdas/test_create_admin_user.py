@@ -1,5 +1,5 @@
 from botocore.stub import Stubber
-from py_aws_core.boto_clients import CognitoClientFactory
+from py_aws_core.boto_clients import CognitoClient
 
 from src.lambdas import create_admin_user
 from src.layers.auth_service import AuthService
@@ -8,7 +8,8 @@ from src.layers.testing import ASTestFixture
 
 class CreateAdminUserTests(ASTestFixture):
     def test_ok(self):
-        boto_client = CognitoClientFactory.new_client()
+        cognito_client = CognitoClient()
+        boto_client = cognito_client.boto_client
 
         stubber_1 = Stubber(boto_client)
         admin_create_user_json = self.get_cognito_resource_json('cognito#admin_create_user.json')
@@ -17,7 +18,7 @@ class CreateAdminUserTests(ASTestFixture):
 
         mock_event = self.get_event_resource_json('event#create_admin_user.json')
         secrets = self.get_mocked_secrets()
-        auth_service = AuthService(boto_client=boto_client, secrets=secrets)
+        auth_service = AuthService(cognito_client=cognito_client, secrets=secrets)
 
         val = create_admin_user.lambda_handler(event=mock_event, context=None, auth_service=auth_service)
         self.assertEqual(

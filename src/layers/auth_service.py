@@ -1,5 +1,5 @@
-from botocore.client import BaseClient
 from py_aws_core import cognito_api
+from py_aws_core.boto_clients import CognitoClient
 
 from . import api_responses, logs, security
 from .auth_interface import IAuth
@@ -9,8 +9,8 @@ logger = logs.get_logger()
 
 
 class AuthService(IAuth):
-    def __init__(self, boto_client: BaseClient, secrets: Secrets):
-        self._boto_client = boto_client
+    def __init__(self, cognito_client: CognitoClient, secrets: Secrets):
+        self._cognito_client = cognito_client
         self._secrets = secrets
         self._cognito_pool_id = secrets.cognito_pool_id
         self._cognito_pool_client_id = secrets.cognito_pool_client_id
@@ -23,7 +23,7 @@ class AuthService(IAuth):
         roles: set[security.UserRoles],
     ):
         return cognito_api.AdminCreateUser.call(
-            cognito_client=self._boto_client,
+            cognito_client=self._cognito_client.boto_client,
             cognito_pool_id=self._cognito_pool_id,
             username=username,
             user_attributes=[
@@ -51,7 +51,7 @@ class AuthService(IAuth):
         password: str
     ) -> api_responses.CognitoTokenResponse:
         response = cognito_api.UserPasswordAuth.call(
-            cognito_client=self._boto_client,
+            cognito_client=self._cognito_client.boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
             username=username,
             password=password
@@ -68,7 +68,7 @@ class AuthService(IAuth):
 
     def refresh_token(self, refresh_token: str) -> api_responses.CognitoTokenResponse:
         response = cognito_api.RefreshTokenAuth.call(
-            cognito_client=self._boto_client,
+            cognito_client=self._cognito_client.boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
             refresh_token=refresh_token,
         )
@@ -89,7 +89,7 @@ class AuthService(IAuth):
         session: str = None,
     ) -> api_responses.CognitoTokenResponse:
         response = cognito_api.RespondToAuthChallenge.call(
-            cognito_client=self._boto_client,
+            cognito_client=self._cognito_client.boto_client,
             cognito_pool_client_id=self._cognito_pool_client_id,
             challenge_name=cognito_api.AuthChallenge.NEW_PASSWORD_REQUIRED,
             challenge_responses=cognito_api.NewPasswordChallengeResponse(

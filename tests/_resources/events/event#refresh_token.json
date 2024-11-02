@@ -1,0 +1,89 @@
+{
+  "resource": "/{proxy+}",
+  "path": "/refresh-token",
+  "httpMethod": "POST",
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Content-Type": "application/json",
+    "Host": "auth-service-dev.mechnetworks.com",
+    "Postman-Token": "96e1a570-4aa5-409e-9e93-4c5f951ff8e1",
+    "User-Agent": "PostmanRuntime/7.42.0",
+    "X-Amzn-Trace-Id": "Root=1-6715149a-1b6dfa083010bdfb6fbd6a3c",
+    "X-Forwarded-For": "107.213.20.204",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https"
+  },
+  "multiValueHeaders": {
+    "Accept": [
+      "*/*"
+    ],
+    "Accept-Encoding": [
+      "gzip, deflate, br"
+    ],
+    "Content-Type": [
+      "application/json"
+    ],
+    "Host": [
+      "auth-service-dev.mechnetworks.com"
+    ],
+    "Postman-Token": [
+      "96e1a570-4aa5-409e-9e93-4c5f951ff8e1"
+    ],
+    "User-Agent": [
+      "PostmanRuntime/7.42.0"
+    ],
+    "X-Amzn-Trace-Id": [
+      "Root=1-6715149a-1b6dfa083010bdfb6fbd6a3c"
+    ],
+    "X-Forwarded-For": [
+      "107.213.20.204"
+    ],
+    "X-Forwarded-Port": [
+      "443"
+    ],
+    "X-Forwarded-Proto": [
+      "https"
+    ]
+  },
+  "queryStringParameters": null,
+  "multiValueQueryStringParameters": null,
+  "pathParameters": {
+    "proxy": "refresh-token"
+  },
+  "stageVariables": null,
+  "requestContext": {
+    "resourceId": "stwwxf",
+    "resourcePath": "/{proxy+}",
+    "operationName": "{proxy+}-ANY",
+    "httpMethod": "POST",
+    "extendedRequestId": "f9AoQFwNPHcEhnQ=",
+    "requestTime": "20/Oct/2024:14:32:58 +0000",
+    "path": "/refresh-token",
+    "accountId": "687272729792",
+    "protocol": "HTTP/1.1",
+    "stage": "dev",
+    "domainPrefix": "auth-service-dev",
+    "requestTimeEpoch": 1729434778987,
+    "requestId": "e5a526a5-4244-411e-82cc-a443e8d23046",
+    "identity": {
+      "cognitoIdentityPoolId": null,
+      "accountId": null,
+      "cognitoIdentityId": null,
+      "caller": null,
+      "sourceIp": "107.213.20.204",
+      "principalOrgId": null,
+      "accessKey": null,
+      "cognitoAuthenticationType": null,
+      "cognitoAuthenticationProvider": null,
+      "userArn": null,
+      "userAgent": "PostmanRuntime/7.42.0",
+      "user": null
+    },
+    "domainName": "auth-service-dev.mechnetworks.com",
+    "deploymentId": "zmrywj",
+    "apiId": "zf63gqc65e"
+  },
+  "body": "{\r\n    \"refresh_token\": \"eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.ovW1Pr76njVNpjzck0tGIbbbxBCBd8P-Kmzi7So-QjV9kb4mhX13QswurGlOz2q1AeF5X84CCxQ7TibWrleQAiNqkhdImGItzOOjCru1R9N5EAvVOw50L68yu-hvo7M9i3Q-4zOB02I6uMzu20LWNja3Yrdpi4aDtpHAmw5EkpQg2NAB0MjPRNe3ANbwN27rlu2MUeeOUYUTxiAsHTarORmxckIEphnztM6JacQes0pGwSIyoETYh7l3v59wKsBxYfpE1VlpyLPdOdOlcwVfQisM823uA0DiM2-GCRFXsKw4llIxPXsZ_TJ7P4DXq65UFtKPYDiRFYSpbBq87yw7-Q.fxGzoPo6ggSkvOBF.2hDKiJcu70BfWsFAtGn6pmYbTjPfahEzriwmOBt918TNrRHqnkPSwcEqBGjaIwWc7XZkMlRE48b-WSINhEIWUrBv97kKAlMqQF-mUr0wo5HD3Qf2SGuR06ErMobuN-LZLlEgz7tUERofn3LhoVyZ6VnoAZCL3eBPvScyg_jWv2Uzk4_44TZSQ9leazBOfWQ4K6Pv6Dkm6eLJlT88M_7_IvuNTjp-V_986a6vCt0HMFJJ-Oejl4p0HUO1pF2ZSiSw6cbDXJxhv4mePWUYcBj828oBFGGM8nO22YUoDrJUPRCgSMA0mr1Msf15TS1qo2SzIwReQ160a1ZajVCqTERqGRwWdJVR0mo47wOh2dzlewmlUKXEehotANqawBgF8Ml8zr7vtP7gWWotj6hoKdmqs-gviKJFyFKN56QMQJMsPJtDiLjQ76ypLxBXPRKgHzMyrYjep8mUg95PwzVZlfqgmyvvHUyWb86dihvWNyFvU6ebrOl2jnBocI4m7fSNsKVNm5PZI9cSrdcHqg42xIzAgM1HgEMVpQ7aOka0fHBf2WzA1ucRZAer0HiHhbBAwfbyccHef8_z7RNsGgw5cBFrhRhHMBtNLbjU52bHN2TsBiye9GaeqWEfhDCzKToW6ZiTN4MHr5erkxBK3v-EZa7s_eyZqz1DUDELy8V_m1AmWJY9Bsc4OblCfvNKZcytWAfDR9J3y26J8e2cV2m7yyyMzfTStb3nX6WHHNKKJVsen2DvlQ6GUmLx1friLlYQnOkXvegqPxlbxgKODvBpuKKxS-tNyOsSaNlPKhOYD_v0igbgdxMH8cO9WX-HuOGiGUjRjetZLSXGzzLAO2tyGbYMrw1lN6nIGJA60oTdN1Gl-LmPlrglKuSW7qTah0DPVSqKfkWI7uw94NStC6N8tYe-n1dvwlchyAKUuN5IaQpiUtIkb5wwbqQ5MsuSie7jaS-sHmDsT5XberZFjeXuVe2MZea2IsIS0MERbA91esvaD8sOX9fB6Mmvuf9WBNU5ieKxIsMKR1nw7icvXULO428n6gQML4gwsgVA5Ivj65QZmM4EUnKTBi8VghXe5nREkyuZc1cXTdB92LDwP0JFfi5_PsDCt9eK7wPOBozxaz8qMlMUMZWZA5jCwYhZCPFYycXFFtcqhDKdXmjeMwWNx4bwq2oO5CynNyaeyqrmGh-EXjk6cqpgNWVcV4wqr1BswolAmFOrVyZpmjO2zrV4UYGbAgP5wDFli5UiFJafrFLeZIf2loBz2RgOELD-maRRMZ3VgbDeHS4N-xw.D7EE30AaFh5yZdKO9j_a4Q\"\r\n}",
+  "isBase64Encoded": false
+}

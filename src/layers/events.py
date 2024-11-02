@@ -1,5 +1,3 @@
-import typing
-
 from py_aws_core.events import LambdaEvent
 from pydantic import BaseModel, EmailStr
 
@@ -14,15 +12,43 @@ class ASEvent(LambdaEvent):
 
 class CreateAdminUserEvent(ASEvent):
     class CreateAdminUser(BaseModel):
-        email = EmailStr
+        email: EmailStr
         group_name: str
-        set_roles = typing.List[security.UserRoles]
+        roles: list[security.UserRoles]
         username: str
 
     def __init__(self, data):
         super().__init__(data)
         self.fields = self.CreateAdminUser(**self.body)
-        # self.group_name = self.body['group_name']
-        # self.username = self.body['username']
-        # self.email = self.body['email']
-        # self.first_name = self.body['set_roles']
+
+
+class LoginEvent(ASEvent):
+    class Login(BaseModel):
+        username: str
+        password: str
+
+    def __init__(self, data):
+        super().__init__(data)
+        self.fields = self.Login(**self.body)
+
+
+class RefreshTokenEvent(ASEvent):
+    class Refresh(BaseModel):
+        refresh_token: str
+
+    def __init__(self, data):
+        super().__init__(data)
+        self.fields = self.Refresh(**self.body)
+
+
+class SetUserPasswordEvent(ASEvent):
+    class SetUserPassword(BaseModel):
+        username: str
+        new_password: str
+        session: str
+        group: str
+        roles: str
+
+    def __init__(self, data):
+        super().__init__(data)
+        self.fields = self.SetUserPassword(**self.body)

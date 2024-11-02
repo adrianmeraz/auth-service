@@ -16,4 +16,4 @@ class Container(containers.DeclarativeContainer):
     cognito_client = providers.Factory(CognitoClient)
     dynamo_table = providers.Factory(DynamoTable, ddb_secrets=secrets)
 
-    auth_service = providers.Factory(AuthService, boto_client=cognito_client, secrets=secrets)
+    auth_service = providers.Factory(AuthService, cognito_client=cognito_client, secrets=secrets)
